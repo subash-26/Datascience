@@ -584,7 +584,7 @@ If it Contains it will be rejected and details will not be fetched]
 chan_id = st.text_input("Enter the Channel ID")
 
 
-if st.button("Fetch Channel Data"):
+if st.button("Data Transmission"):
 
         special_characters = set('!@#$%^&*()""<>,.?/~`')
         if any(char in special_characters for char in chan_id):
