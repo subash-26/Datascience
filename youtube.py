@@ -583,14 +583,12 @@ If it Contains it will be rejected and details will not be fetched]
 
 chan_id = st.text_input("Enter the Channel ID")
 
-choice1 , choice2 = st.columns(2)
 
-with choice1:
-    if st.button("Fetch Channel Data"):
+if st.button("Fetch Channel Data"):
 
         special_characters = set('!@#$%^&*()""<>,.?/~`')
         if any(char in special_characters for char in chan_id):
-            st.error("This channel id is invalid channel id")
+             st.error("This channel id is invalid channel id")
 
         else:  
             ch_ids=[]
@@ -598,22 +596,19 @@ with choice1:
             coll1=db["Channel_Details"]
             for chan_data in coll1.find({},{"_id":0,"Channel_Table":1}):
 
-                ch_ids.append(chan_data["Channel_Table"]["Channel_Id"])
+                    ch_ids.append(chan_data["Channel_Table"]["Channel_Id"])
 
 
             if chan_id in ch_ids:
-                st.error("This is a duplicate channel id . This channel details is already exits")
+                    st.error("This is a duplicate channel id . This channel details is already exits")
 
             else :
-                insert=channels_detail(chan_id)
-                st.toast(insert, icon='😍')
+                    insert=channels_detail(chan_id)
+                    st.toast(insert, icon='😍')
+                    Display_Table=pst_table()
+                    st.toast(Display_Table,  icon='😍')
+
                 
-
-with choice2:        
-    if st.button("ETL Process"):
-
-        Display_Table=pst_table()
-        st.toast(Display_Table,  icon='😍')
 
 
 Tables = st.selectbox("Select one option to view the table",("                    ",
